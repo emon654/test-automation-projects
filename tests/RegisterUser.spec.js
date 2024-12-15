@@ -20,6 +20,7 @@ test('register user', async ({page}) => {
     await page.getByLabel('I have read and agree to the').click();
     await page.getByRole('button', { name: ' Continue' }).click();
 
+    // this line of code needs to be fixed. 
     await expect.locator('xpath=//*[@id="maincontainer"]/div/div[1]/div/h1/span[1]').toContainText('Your Account Has Been Created!');
 
     await page.locator('xpath=//*[@id="maincontainer"]/div/div[1]/div/div/section/a').click();
