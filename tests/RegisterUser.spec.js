@@ -1,29 +1,48 @@
 import { test, expect } from '@playwright/test';
 
 test('register user', async ({page}) => {
-    await page.goto('https://automationteststore.com/');
+    await page.goto('https://www.automationexercise.com/');
 
-    await page.getByRole('link', { name: 'Login or register' }).click();
-    await page.getByRole('button', { name: ' Continue' }).click();
-    await page.locator('#AccountFrm_firstname').fill('test');
-    await page.locator('#AccountFrm_lastname').fill('user');
-    await page.locator('#AccountFrm_email').fill('autotest2@user.com');
-    await page.locator('#AccountFrm_country_id').selectOption('United States');
-    await page.locator('#AccountFrm_address_1').fill('123 fake blvd');
-    await page.locator('#AccountFrm_city').fill('Philadelphia');
-    await page.locator('#AccountFrm_zone_id').selectOption('Pennsylvania');
-    await page.locator('#AccountFrm_postcode').fill('12345');
-    await page.locator('#AccountFrm_loginname').fill('testuser2');
-    await page.locator('#AccountFrm_password').fill('123456');
-    await page.locator('#AccountFrm_confirm').fill('123456');
-    await page.getByLabel('No').click();
-    await page.getByLabel('I have read and agree to the').click();
-    await page.getByRole('button', { name: ' Continue' }).click();
+    await page.locator('xpath=//*[@id="header"]/div/div/div/div[2]/div/ul/li[4]/a').click();
+    //await expect.locator('xpath=//*[@id="form"]/div/div/div[3]/div/h2').toContainText('New User Signup!');
+    await page.locator('xpath=//*[@id="form"]/div/div/div[3]/div/form/input[2]').fill('system1');
+    await page.locator('xpath=//*[@id="form"]/div/div/div[3]/div/form/input[3]').fill('systemize@test.com');
+    await page.locator('xpath=//*[@id="form"]/div/div/div[3]/div/form/button').click();
+    await page.locator('xpath=//*[@id="id_gender1"]').click();
+    await page.locator('xpath=//*[@id="password"]').fill('123456');
+    await page.locator('xpath=//*[@id="days"]').selectOption("1");
+    await page.locator('xpath=//*[@id="months"]').selectOption("1");
+    await page.locator('xpath=//*[@id="years"]').selectOption("2000");
 
-    // this line of code needs to be fixed. 
-    await expect.locator('xpath=//*[@id="maincontainer"]/div/div[1]/div/h1/span[1]').toContainText('Your Account Has Been Created!');
+    await page.locator('xpath=//*[@id="newsletter"]').click();
+    await page.locator('xpath=//*[@id="optin"]').click();
 
-    await page.locator('xpath=//*[@id="maincontainer"]/div/div[1]/div/div/section/a').click();
+
+    await page.locator('xpath=//*[@id="first_name"]').fill('Systemize');
+    await page.locator('xpath=//*[@id="last_name"]').fill('Pro');
+    await page.locator('xpath=//*[@id="address1"]').fill('123 fake street');
+    await page.locator('xpath=//*[@id="city"]').fill('Brooklyn');
+    await page.locator('xpath=//*[@id="country"]').selectOption("United States");
+    await page.locator('xpath=//*[@id="state"]').fill('NY');
+    await page.locator('xpath=//*[@id="zipcode"]').fill('01111');
+    await page.locator('xpath=//*[@id="mobile_number"]').fill('1234567890');
+    await page.locator('xpath=//*[@id="form"]/div/div/div/div/form/button').click();
+
+    //await expect.locator('xpath//*[@id="form"]/div/div/div/h2/b').toContainText('Account Created!');
+
+    await page.locator('xpath=//*[@id="form"]/div/div/div/div/a').click();
+
+    await page.locator('//*[@id="header"]/div/div/div/div[2]/div/ul/li[5]/a').click();
+
+    //await expect.locator('xpath=//*[@id="form"]/div/div/div/h2/b').toContainText('Account Deleted!');
+
+    page.close();
+
+
+
+    
+
+ 
 
 
 
